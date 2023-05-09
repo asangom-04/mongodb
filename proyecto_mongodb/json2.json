@@ -1,0 +1,37 @@
+[
+	{
+	  "fecha_alta": ISODate("2022-01-01"),
+	  "matricula": "6666SSS",
+	  "peso_maximo": 10000,
+	  "propietario": "Juan Pérez"
+	}
+	{
+	  "nombre": "Pedro",
+	  "apellidos": "García",
+	  "dni": "12345678O",
+	  "direccion": "Calle 123",
+	  "provincia": "Barcelona",
+	  "poblacion": "Barcelona",
+	  "telefono": "123456789",
+	  "tarifa_kilo": 10.5,
+	  "tarifa_km": 0.3,
+	  "codigo_unico": "ABC123",
+	  "cuenta_propia": true
+	}
+	{
+	  "matricula": "7777VVV",
+	  "peso": 5000,
+	  "capacidad": 5000,
+	  "tipo": "tipo A",
+	  "carga": 2000,
+	  "carga_actual": "Carga completa"
+	}
+	{
+	  "codigo": "C123",
+	  "numero": 123,
+	  "ciudades_conectadas": ["Barcelona", "Madrid"],
+	  "km": 500,
+	  "tiempo_medio": 5.5,
+	  "importe_peaje": 15.75
+	}
+]

@@ -1,0 +1,104 @@
+Métodos de inserción:
+a) Método insertOne():
+db.camiones.insertOne({
+  fecha_alta: ISODate("2022-01-01"),
+  matricula: "6666SSS",
+  peso_maximo: 10000,
+  propietario: "Juan Pérez"
+});
+b) Método insertMany():
+db.camiones.insertMany([
+  {
+    fecha_alta: ISODate("2022-01-01"),
+    matricula: "7777TTT",
+    peso_maximo: 12000,
+    propietario: "Ana López"
+  },
+  {
+    fecha_alta: ISODate("2022-01-02"),
+    matricula: "8888UUU",
+    peso_maximo: 15000,
+    propietario: "Carlos García"
+  }
+]);
+
+
+Métodos de eliminación:
+a) Método deleteOne():
+db.camiones.deleteOne({ matricula: "6666SSS" });
+
+b) Método deleteMany():
+db.camiones.deleteMany({ propietario: "Ana López" });
+
+
+Métodos de actualización:
+a) Método updateOne():
+db.camiones.updateOne(
+  { matricula: "6666SSS" },
+  { $set: { propietario: "María Rodríguez" } }
+);
+
+b) Método updateMany():
+db.camiones.updateMany(
+  { propietario: "Carlos García" },
+  { $set: { peso_maximo: 18000 } }
+);
+
+c) Método replaceOne():
+db.camiones.replaceOne(
+  { matricula: "7777TTT" },
+  {
+    fecha_alta: ISODate("2022-01-03"),
+    matricula: "7777TTT",
+    peso_maximo: 13000,
+    propietario: "Luis Martínez"
+  }
+);
+
+
+Consultas de datos simples:
+a) Obtener todos los conductores cuyo nombre sea "Pedro":
+db.conductores.find({ nombre: "Pedro" }, { _id: 0, nombre: 1, apellidos: 1 });
+
+b) Obtener los camiones con un peso máximo mayor a 12000:
+db.camiones.find({ peso_maximo: { $gt: 12000 } }, { _id: 0, matricula: 1, peso_maximo: 1 });
+
+c) Obtener los pedidos realizados después de una fecha específica, ordenados por número de pedido:
+db.pedidos.find({ fecha: { $gt: ISODate("2022-01-01") } }, { _id: 0, numero: 1, fecha: 1 }).sort({ numero: 1 });
+
+d) Obtener los remolques cuyo tipo sea "tipo A" y su carga actual sea mayor a 0:
+db.remolques.find({ tipo: "tipo A", carga_actual: { $gt: 0 } }, { _id: 0, matricula: 1, tipo: 1, carga_actual: 1 });
+
+e) Obtener las carreteras cuyo tiempo medio sea menor o igual a 5, limitando los resultados a 3 documentos:
+db.carreteras.find({ tiempo_medio: { $lte: 5 } }, { _id: 0, codigo: 1, ciudades_conectadas: 1 }).limit(3);
+
+
+Consultas con arrays:
+a) Obtener los conductores que tengan habilitaciones de tipo "Tipo A":
+db.conductores.find({ "habilitaciones.tipo": "Tipo A" }, { _id: 0, nombre: 1, apellidos: 1, habilitaciones: 1 });
+
+b) Obtener los remolques que tengan al menos una carga específica en su historial de cargas:
+db.remolques.find({ "cargas.historial": "Carga 1" }, { _id: 0, matricula: 1, cargas: 1 });
+
+c) Obtener los pedidos que contengan un array de productos y que tengan un número de productos mayor a 5:
+db.pedidos.find({ "productos": { $exists: true, $size: { $gt: 5 } } }, { _id: 0, numero: 1, productos: 1 });
+
+
+Consultas con documentos embebidos:
+a) Obtener los conductores que tengan una dirección en la provincia de Barcelona:
+db.conductores.find({ "direccion.provincia": "Barcelona" }, { _id: 0, nombre: 1, apellidos: 1, direccion: 1 });
+
+b) Obtener los pedidos que tengan un documento de facturación con un importe mayor a 1000:
+db.pedidos.find({ "facturacion.importe": { $gt: 1000 } }, { _id: 0, numero: 1, facturacion: 1 });
+
+c) Obtener los camiones que tengan un documento de inspección con resultado "Aprobado":
+db.camiones.find({ "inspeccion.resultado": "Aprobado" }, { _id: 0, matricula: 1, inspeccion: 1 });
+
+Consulta de agrupación:
+a) Obtener el número total de pedidos realizados por cada cliente:
+db.pedidos.aggregate([
+  { $group: { _id: "$cif", totalPedidos: { $sum: 1 } } },
+  { $sort: { totalPedidos: -1 } },
+  { $project: { _id: 0, cif: "$_id", totalPedidos: 1 } },
+  { $limit: 5 }
+]);

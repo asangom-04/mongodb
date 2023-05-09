@@ -1,0 +1,91 @@
+Insertar varios documentos:
+// Método 1: insertMany()
+const documentos = [
+  {
+    "name": "John",
+    "age": 25
+  },
+  {
+    "name": "Jane",
+    "age": 30
+  },
+  {
+    "name": "Alice",
+    "age": 35
+  }
+];
+
+db.coleccion.insertMany(documentos);
+
+
+Eliminar varios documentos:
+// Método 1: deleteMany()
+// Eliminar todos los documentos con age igual a 25
+db.coleccion.deleteMany({ "age": 25 });
+
+// Método 2: remove()
+// Eliminar todos los documentos con age igual a 30
+db.coleccion.remove({ "age": 30 });
+
+Actualizar varios documentos:
+// Método 1: updateMany()
+// Actualizar todos los documentos con age igual a 25 y establecer age a 30
+db.coleccion.updateMany({ "age": 25 }, { $set: { "age": 30 } });
+
+// Método 2: update()
+// Actualizar el primer documento con age igual a 30 y establecer age a 35
+db.coleccion.update({ "age": 30 }, { $set: { "age": 35 } });
+
+// Método 3: replaceOne()
+// Reemplazar el primer documento con age igual a 35
+db.coleccion.replaceOne({ "age": 35 }, { "name": "Bob", "age": 40 });
+
+
+Consultas de datos simples:
+// Consulta 1: Obtener todos los documentos de una colección
+db.coleccion.find();
+
+// Consulta 2: Obtener documentos con age mayor o igual a 30 y proyectar solo el campo "name"
+db.coleccion.find({ "age": { $gte: 30 } }, { "name": 1 });
+
+// Consulta 3: Obtener documentos que contienen la palabra "example" en el campo "description" (búsqueda por texto)
+db.coleccion.find({ $text: { $search: "example" } });
+
+// Consulta 4: Obtener documentos ordenados por age de forma descendente
+db.coleccion.find().sort({ "age": -1 });
+
+// Consulta 5: Obtener los primeros 3 documentos de una colección
+db.coleccion.find().limit(3);
+
+
+Consultas con arrays:
+// Consulta 1: Obtener documentos que contienen el valor 5 en el array "numbers"
+db.coleccion.find({ "numbers": 5 });
+
+// Consulta 2: Obtener documentos donde el tamaño del array "tags" sea mayor a 2
+db.coleccion.find({ "tags": { $size: { $gt: 2 } } });
+
+// Consulta 3: Obtener documentos donde al menos uno de los elementos del array "categories" sea "Sports"
+db.coleccion.find({ "categories": "Sports" });
+
+
+Consultas con documentos embebidos:
+// Consulta 1: Obtener documentos con "address.city" igual a "New York"
+db.coleccion.find({ "address.city": "New York" });
+
+// Consulta 2: Obtener documentos donde el campo "education.degree" sea igual a "Master" y "education.major" sea "Computer Science"
+db.coleccion.find({ "education.degree": "Master", "education.major": "Computer Science" });
+
+// Consulta 3: Obtener documentos donde el campo "work_experience" tiene al menos un documento con "position" igual a "Manager"
+db.coleccion.find({ "work_experience.position": "Manager" });
+
+Consulta de agrupación:
+// Consulta: Agrupar documentos por el campo "category" y obtener el total de documentos en cada categoría
+db.coleccion.aggregate([
+  {
+    $group: {
+      _id: "$category",
+      total: { $sum: 1 }
+    }
+  }
+]);

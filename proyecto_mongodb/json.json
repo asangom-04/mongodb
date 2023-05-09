@@ -1,0 +1,116 @@
+[
+  {
+    "string": "OpenAI",
+    "integer": 12345,
+    "float": 3.14159,
+    "boolean": true,
+    "null": null,
+    "array": [1, 2, 3, 4, 5],
+    "object": {
+      "name": "John Doe",
+      "age": 30,
+      "email": "johndoe@example.com",
+      "address": {
+        "street": "123 Main Street",
+        "city": "New York",
+        "state": "NY",
+        "zipcode": "10001"
+      },
+      "skills": ["Python", "JavaScript", "MongoDB"],
+      "work_experience": [
+        {
+          "company": "ABC Corp",
+          "position": "Software Engineer",
+          "start_date": "2018-01-01",
+          "end_date": "2022-12-31"
+        },
+        {
+          "company": "XYZ Inc",
+          "position": "Senior Developer",
+          "start_date": "2023-01-01",
+          "end_date": null
+        }
+      ],
+      "education": {
+        "university": "University of Example",
+        "degree": "Bachelor of Science",
+        "major": "Computer Science",
+        "graduation_year": 2017
+      },
+      "projects": [
+        {
+          "name": "Project A",
+          "description": "Developed a web application using Python and Django framework.",
+          "start_date": "2016-05-01",
+          "end_date": "2017-02-28"
+        },
+        {
+          "name": "Project B",
+          "description": "Implemented a RESTful API using Node.js and Express framework.",
+          "start_date": "2018-03-15",
+          "end_date": "2019-09-30"
+        }
+      ],
+      "hobbies": ["Reading", "Playing guitar", "Photography"]
+    },
+    "objectId": "6171ca8ed4bb5c29a32e2c9e",
+    "date": "2023-05-06T12:34:56.789Z"
+  },
+  {
+    "string": "Company XYZ",
+    "integer": 98765,
+    "float": 2.71828,
+    "boolean": false,
+    "null": null,
+    "array": [10, 20, 30, 40, 50],
+    "object": {
+      "name": "Jane Smith",
+      "age": 35,
+      "email": "janesmith@example.com",
+      "address": {
+        "street": "789 Elm Street",
+        "city": "San Francisco",
+        "state": "CA",
+        "zipcode": "90002"
+      },
+      "skills": ["Java", "C#", "SQL"],
+      "work_experience": [
+        {
+          "company": "XYZ Corp",
+          "position": "Software Developer",
+          "start_date": "2015-01-01",
+          "end_date": "2020-06-30"
+        },
+        {
+          "company": "ABC Inc",
+          "position": "Senior Engineer",
+          "start_date": "2020-07-01",
+          "end_date": null
+        }
+      ],
+      "education": {
+        "university": "University of Example",
+        "degree": "Master of Engineering",
+        "major": "Computer Engineering",
+        "graduation_year": 2014
+      },
+      "projects": [
+        {
+	"name": "Project X",
+	"description": "Developed a mobile application using React Native framework.",
+	"start_date": "2016-03-01",
+	"end_date": "2017-12-31"
+      },
+      {
+	"name": "Project Y",
+	"description": "Implemented a data analytics platform using Hadoop and Spark.",
+	"start_date": "2018-02-15",
+	"end_date": "2019-11-30"
+      }
+    ],
+    "hobbies": ["Traveling", "Cooking", "Playing tennis"]
+  },
+  "objectId": "6171ca8ed4bb5c29a32e2c9f",
+  "date": "2023-05-06T12:34:56.789Z"
+  }
+]
